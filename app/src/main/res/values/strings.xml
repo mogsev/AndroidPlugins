@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">AndroidPlugins</string>
+
+    <!-- Hashing Speed card -->
+    <string name="profitability_above_ltc">Profitability above ltc:</string>
+    <string name="price">Price:</string>
+    <string name="profitability_ltc">Profitability ltc:</string>
+    <string name="algo">Algo:</string>
+    <string name="speed">Speed:</string>
+
 </resources>

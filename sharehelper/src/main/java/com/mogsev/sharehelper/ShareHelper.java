@@ -5,17 +5,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
-import android.os.Environment;
-import android.util.Log;
-import android.view.View;
 
 import com.mogsev.sharehelper.utils.ScreenShot;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.Date;
+//import com.unity3d.player.UnityPlayer;
 
 /**
  * @author Eugene Sikaylo (mogsev@gmail.com)
@@ -26,6 +19,9 @@ public class ShareHelper {
     private static final String SHARE_MESSAGE = "Share message to...";
     private static final String SHARE_IMAGE = "Share image to...";
     private static final String SHARE_RESULT = "Share result to...";
+
+    //private Activity mainActivity = UnityPlayer.currentActivity;
+
 
     /**
      * Send text content
