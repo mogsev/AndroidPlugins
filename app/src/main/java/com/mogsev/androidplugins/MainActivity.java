@@ -4,9 +4,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.mogsev.androidplugins.adapter.HashingSpeedRVAdapter;
+import com.mogsev.androidplugins.model.ProviderStatsOfBTCAddr;
 import com.mogsev.androidplugins.model.StatsGlobalCurrent;
 import com.mogsev.androidplugins.network.ApiNicehash;
 
@@ -39,6 +41,11 @@ public class MainActivity extends AppCompatActivity {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(this::handleResponse, this::handleError));
+
+        new CompositeDisposable().add(ApiNicehash.API_NICEHASH.getProoviderStatsOfBTCAddr("1AguBgPDku98RRpV4DZTntEjcUjWaJTUxA")
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(this::log, this::handleError));
     }
 
     @Override
@@ -47,11 +54,16 @@ public class MainActivity extends AppCompatActivity {
         mCompositeDisposable.clear();
     }
 
+    private void log(ProviderStatsOfBTCAddr item) {
+        Log.i(TAG, item.toString());
+    }
+
     private void handleResponse(StatsGlobalCurrent result) {
         mAdapter.setList(result.getResult().getStats());
     }
 
     private void handleError(Throwable error) {
+        Log.e(TAG, error.getLocalizedMessage());
         Toast.makeText(this, "Error " + error.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
     }
 }
