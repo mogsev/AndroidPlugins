@@ -26,8 +26,8 @@ public class CustomView extends View {
     public CustomView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
 
-        TypedArray typedArray = getContext().obtainStyledAttributes(attrs, R.styleable.PageIndicatorView);
-        int count = typedArray.getInt(R.styleable.PageIndicatorView_count, 0);
+        TypedArray typedArray = getContext().obtainStyledAttributes(attrs, R.styleable.CustomView);
+        int count = typedArray.getInt(R.styleable.CustomView_count, 0);
         typedArray.recycle();
     }
 

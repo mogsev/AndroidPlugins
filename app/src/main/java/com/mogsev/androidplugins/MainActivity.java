@@ -40,12 +40,18 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+
         mCompositeDisposable.add(ApiNicehash.API_NICEHASH.statsGlobalCurrent()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(this::handleResponse, this::handleError));
 
-        new CompositeDisposable().add(ApiNicehash.API_NICEHASH.getProoviderStatsOfBTCAddr("1AguBgPDku98RRpV4DZTntEjcUjWaJTUxA")
+        mCompositeDisposable.add(ApiNicehash.API_NICEHASH.getProoviderStatsOfBTCAddr("1LXabKdQyAdfPUWDxdD7cNBaLoxLpNsWHx")
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(this::log, this::handleError));
+
+        mCompositeDisposable.add(ApiNicehash.API_NICEHASH.getProoviderStatsOfBTCAddr("1AguBgPDku98RRpV4DZTntEjcUjWaJTUxA")
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(this::log, this::handleError));
@@ -72,18 +78,18 @@ public class MainActivity extends AppCompatActivity {
 
     private void initViewPicker() {
         ViewPicker viewPicker = (ViewPicker) findViewById(R.id.viewPicker);
-        String[] months=new String[12];
-        months[0]="00";
-        months[1]="01";
-        months[2]="02";
-        months[3]="03";
-        months[4]="04";
-        months[5]="05";
-        months[6]="06";
-        months[7]="07";
-        months[8]="08";
-        months[9]="09";
-        months[10]="10";
+        String[] months = new String[12];
+        months[0] = "00";
+        months[1] = "01";
+        months[2] = "02";
+        months[3] = "03";
+        months[4] = "04";
+        months[5] = "05";
+        months[6] = "06";
+        months[7] = "07";
+        months[8] = "08";
+        months[9] = "09";
+        months[10] = "10";
         viewPicker.setValues(months);
     }
 }
