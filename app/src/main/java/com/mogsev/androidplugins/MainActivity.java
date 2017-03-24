@@ -11,6 +11,7 @@ import com.mogsev.androidplugins.adapter.HashingSpeedRVAdapter;
 import com.mogsev.androidplugins.model.ProviderStatsOfBTCAddr;
 import com.mogsev.androidplugins.model.StatsGlobalCurrent;
 import com.mogsev.androidplugins.network.ApiNicehash;
+import com.mogsev.androidplugins.widget.ViewPicker;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -32,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setAdapter(mAdapter);
+
+        initViewPicker();
     }
 
     @Override
@@ -65,5 +68,22 @@ public class MainActivity extends AppCompatActivity {
     private void handleError(Throwable error) {
         Log.e(TAG, error.getLocalizedMessage());
         Toast.makeText(this, "Error " + error.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+    }
+
+    private void initViewPicker() {
+        ViewPicker viewPicker = (ViewPicker) findViewById(R.id.viewPicker);
+        String[] months=new String[12];
+        months[0]="00";
+        months[1]="01";
+        months[2]="02";
+        months[3]="03";
+        months[4]="04";
+        months[5]="05";
+        months[6]="06";
+        months[7]="07";
+        months[8]="08";
+        months[9]="09";
+        months[10]="10";
+        viewPicker.setValues(months);
     }
 }

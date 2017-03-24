@@ -3,4 +3,21 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <!-- ViewPicker colors -->
+    <color name="viewPickerBackground">#ffffff</color>
+    <color name="viewPickerText">#000000</color>
+    <color name="viewPickerSelectedValue">#3770e4</color>
+    <color name="viewPickerSelectedValueShadow">#ffffff</color>
+    <color name="viewPickerGradientStart">#55000000</color>
+    <color name="viewPickerSelectedValueLineG1">#22ffffff</color>
+    <color name="viewPickerSelectedValueLineG2">#227d98ff</color>
+    <color name="viewPickerSelectedValueLineG3">#336585ff</color>
+    <color name="viewPickerSelectedValueLineG4">#336d8dff</color>
+    <color name="viewPickerSelectedValueBorder">#9a9da4</color>
+    <color name="viewPickerSelectedBorderTop">#f8fcff</color>
+    <color name="viewPickerSelectedBorderBottom">#a1a7bf</color>
+    <color name="viewPickerBlackLines">#000000</color>
+    <color name="viewPickerGrayLines">#cfcdd8</color>
+
 </resources>

@@ -1,6 +1,7 @@
 package com.mogsev.androidplugins.network;
 
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+import com.mogsev.androidplugins.model.DetailedStatsOfBTCAddr;
 import com.mogsev.androidplugins.model.ProviderStatsOfBTCAddr;
 import com.mogsev.androidplugins.model.StatsGlobalCurrent;
 
@@ -23,6 +24,9 @@ public interface ApiNicehash {
 
     @GET("api?method=stats.provider")
     Observable<ProviderStatsOfBTCAddr> getProoviderStatsOfBTCAddr(@Query("addr") String addr);
+
+    @GET("api?method=stats.provider.ex")
+    Observable<DetailedStatsOfBTCAddr> getDetailedStatesOfBTCAddr(@Query("addr") String addr);
 
     public static ApiNicehash API_NICEHASH = new Retrofit.Builder()
             .baseUrl(BASE_URL)
