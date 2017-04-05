@@ -7,5 +7,8 @@
     <string name="profitability_ltc">Profitability ltc:</string>
     <string name="algo">Algo:</string>
     <string name="speed">Speed:</string>
+    <string name="title_activity_custom_view">CustomViewActivity</string>
+
+    <string name="hint_of_clearable_edit_text">Enter text...</string>
 
 </resources>

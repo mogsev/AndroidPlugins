@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+
+    <EditText
+        android:id="@+id/etClearable"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:imeOptions="actionDone"
+        android:inputType="text"
+        android:maxLines="@integer/max_lines_1"
+        android:layout_toLeftOf="@+id/ibClearable"
+        android:layout_toStartOf="@+id/ibClearable" />
+
+    <ImageButton
+        android:id="@+id/ibClearable"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_dp_4"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:background="?android:attr/selectableItemBackground"
+        android:padding="@dimen/padding_dp_8"
+        android:visibility="gone"
+        android:src="@drawable/ic_clean_edit_text_gray_24dp" />
+
+</RelativeLayout>

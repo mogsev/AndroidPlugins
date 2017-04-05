@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- view elements -->
+    <item name="edit_text_clearable" type="id" />
+    <item name="image_button_clearable" type="id" />
+</resources>

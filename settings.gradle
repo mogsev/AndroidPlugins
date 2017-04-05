@@ -1,1 +1,1 @@
-include ':app', ':sharehelper'
+include ':app', ':sharehelper', ':customview'

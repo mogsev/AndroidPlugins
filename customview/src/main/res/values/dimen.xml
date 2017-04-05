@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- margin -->
+    <dimen name="margin_dp_4">4dp</dimen>
+
+    <!-- padding -->
+    <dimen name="padding_dp_8">8dp</dimen>
+</resources>

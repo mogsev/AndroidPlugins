@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/AndroidPlugins.iml" filepath="$PROJECT_DIR$/AndroidPlugins.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/customview/customview.iml" filepath="$PROJECT_DIR$/customview/customview.iml" />
       <module fileurl="file://$PROJECT_DIR$/sharehelper/sharehelper.iml" filepath="$PROJECT_DIR$/sharehelper/sharehelper.iml" />
     </modules>
   </component>
