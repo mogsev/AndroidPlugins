@@ -21,12 +21,14 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.text.Editable;
 import android.text.InputType;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
@@ -65,28 +67,38 @@ public class ClearableEditText extends RelativeLayout {
     }
 
     @Override
+    protected void dispatchSaveInstanceState(SparseArray<Parcelable> container) {
+        if (BuildConfig.DEBUG) Log.d(TAG, "dispatchSaveInstanceState");
+        super.dispatchFreezeSelfOnly(container);
+    }
+
+    @Override
+    protected void dispatchRestoreInstanceState(SparseArray<Parcelable> container) {
+        if (BuildConfig.DEBUG) Log.d(TAG, "dispatchRestoreInstanceState");
+        super.dispatchThawSelfOnly(container);
+    }
+
+    @Override
     public Parcelable onSaveInstanceState() {
         if (BuildConfig.DEBUG) Log.d(TAG, "onSaveInstanceState");
-        Bundle bundle = new Bundle();
-        String str = mEditTextClearable.getText().toString();
-        ClearableEditTextState state = new ClearableEditTextState(super.onSaveInstanceState(), str);
-        bundle.putParcelable(ClearableEditTextState.STATE, state);
-        return bundle;
+        Parcelable superState = super.onSaveInstanceState();
+        ClearableEditTextState localState = new ClearableEditTextState(superState);
+        localState.mText = mEditTextClearable.getText().toString();
+        return localState;
     }
 
     @Override
     public void onRestoreInstanceState(Parcelable state) {
         if (BuildConfig.DEBUG) Log.d(TAG, "onRestoreInstanceState");
-        if (state instanceof Bundle) {
-            Bundle bundle = (Bundle) state;
-            ClearableEditTextState localState = (ClearableEditTextState) bundle.getParcelable(ClearableEditTextState.STATE);
-            String str = localState.getText();
-            mEditTextClearable.setText(str);
-            super.onRestoreInstanceState(localState.getSuperState());
+        if (!(state instanceof ClearableEditTextState)) {
+            super.onRestoreInstanceState(state);
             return;
         }
-        // Stops a bug with the wrong state being passed to the super
-        super.onRestoreInstanceState(BaseSavedState.EMPTY_STATE);
+        // it is our state
+        ClearableEditTextState localState = (ClearableEditTextState) state;
+        // Peel it and give the child to the super class
+        super.onRestoreInstanceState(localState.getSuperState());
+        mEditTextClearable.setText(localState.mText);
     }
 
     /**
@@ -170,18 +182,48 @@ public class ClearableEditText extends RelativeLayout {
         mEditTextClearable.setText(cs);
     }
 
+    /**
+     * Saved State inner static class
+     */
     protected static class ClearableEditTextState extends BaseSavedState {
-        protected static final String STATE = "ClearableEditText.STATE";
+        private static final String TAG = ClearableEditTextState.class.getSimpleName();
 
+        // null values are allowed
         private String mText;
 
-        public ClearableEditTextState(Parcelable superState, String str) {
+        ClearableEditTextState(Parcelable superState) {
+            super(superState);
+        }
+
+        ClearableEditTextState(Parcelable superState, String str) {
             super(superState);
             mText = str;
         }
 
-        public String getText(){
-            return mText;
+        @Override
+        public void writeToParcel(Parcel out, int flags) {
+            super.writeToParcel(out, flags);
+            out.writeString(mText);
+        }
+
+        @SuppressWarnings("hiding")
+        public static final Parcelable.Creator<ClearableEditTextState> CREATOR
+                = new Parcelable.Creator<ClearableEditTextState>() {
+            public ClearableEditTextState createFromParcel(Parcel in) {
+                return new ClearableEditTextState(in);
+            }
+
+            public ClearableEditTextState[] newArray(int size) {
+                return new ClearableEditTextState[size];
+            }
+        };
+
+        // Read back the values
+        private ClearableEditTextState(Parcel in) {
+            super(in);
+
+            // Read the from date
+            mText = in.readString();
         }
     }
 }
